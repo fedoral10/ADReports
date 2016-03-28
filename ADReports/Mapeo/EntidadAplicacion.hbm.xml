@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="ADReports" namespace="ADReports.Dominio" xmlns="urn:nhibernate-mapping-2.2">
+    <class name="ADReports.Dominio.EntidadAplicacion" table="entidad_aplicacion" schema="public" optimistic-lock="version">
+        <id name="idEntidadAplicacion" type="long">
+            <column name="id_entidad_aplicacion" />
+            <generator class="sequence" />
+        </id>
+        <property name="idAplicacion" type="long">
+            <column name="id_aplicacion" not-null="true" />
+        </property>
+        <property name="idEntidad" type="long">
+            <column name="id_entidad" not-null="true" />
+        </property>
+      
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="ADReports" namespace="ADReports.Dominio" xmlns="urn:nhibernate-mapping-2.2">
+    <class name="ADReports.Dominio.Entidad" table="entidad" schema="public" optimistic-lock="version">
+        <id name="idEntidad" type="long">
+            <column name="id_entidad" />
+            <generator class="sequence" />
+        </id>
+        <property name="cn" type="string">
+            <column name="cn" />
+        </property>
+        <property name="company" type="string">
+            <column name="company" />
+        </property>
+        <property name="department" type="string">
+            <column name="department" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" />
+        </property>
+        <property name="displayname" type="string">
+            <column name="displayname" />
+        </property>
+        <property name="distinguishedname" type="string">
+            <column name="distinguishedname" />
+        </property>
+        <property name="givenname" type="string">
+            <column name="givenname" />
+        </property>
+        <property name="mail" type="string">
+            <column name="mail" />
+        </property>
+        <property name="objectclass" type="string">
+            <column name="objectclass" />
+        </property>
+        <property name="samaccountname" type="string">
+            <column name="samaccountname" />
+        </property>
+        <property name="surname" type="string">
+            <column name="surname" />
+        </property>
+        <property name="telephonenumber" type="string">
+            <column name="telephonenumber" />
+        </property>
+        <property name="title" type="string">
+            <column name="title" />
+        </property>
+        <property name="whenchanged" type="string">
+            <column name="whenchanged" />
+        </property>
+        <property name="whencreated" type="string">
+            <column name="whencreated" />
+        </property>
+        <property name="topou" type="string">
+            <column name="topou" />
+        </property>
+    
+<!--
+public virtual string distinguishedname { get; set; }
+        public virtual string company { get; set; }
+        public virtual string physicalDeliveryOfficeName { get; set; }
+        public virtual DateTime lastLogonDT { get; set; }
+        public virtual DateTime whenCreatedDT { get; set; }
+        public virtual DateTime whenChangedDT { get; set; }
+        public virtual DateTime pwdLastSetDT { get; set; }
+-->
+      <property name="physicalDeliveryOfficeName" type="string">
+        <column name ="physicalDeliveryOfficeName"/>
+      </property>
+      <property name="lastLogonDT" type="datetime">
+        <column name ="lastLogonDT"/>
+      </property>
+          <property name="whenCreatedDT" type="datetime">
+        <column name ="whenCreatedDT"/>
+      </property>
+      <property name="whenChangedDT" type="datetime">
+        <column name ="whenChangedDT"/>
+      </property>
+          <property name="pwdLastSetDT" type="datetime">
+        <column name ="pwdLastSetDT"/>
+      </property>
+      <set name="EntidadAplicaciones" inverse="true">
+        <key column="id_Entidad"/>
+        <one-to-many class="EntidadAplicacion"/>
+      </set>
+    </class>
+</hibernate-mapping>

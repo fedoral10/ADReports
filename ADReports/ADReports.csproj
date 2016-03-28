@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1AB046D2-7852-40C7-B807-DE872D9AB82F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ADReports</RootNamespace>
+    <AssemblyName>ADReports</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Charts.v14.2.Core, Version=14.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v14.2, Version=14.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Office.v14.2.Core, Version=14.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.PivotGrid.v14.2.Core, Version=14.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v14.2.Core, Version=14.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v14.2.Core, Version=14.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Sparkline.v14.2.Core, Version=14.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v14.2, Version=14.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v14.2.UI, Version=14.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v14.2, Version=14.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v14.2, Version=14.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGauges.v14.2.Core, Version=14.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v14.2, Version=14.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v14.2, Version=14.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v14.2, Version=14.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v14.2, Version=14.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v14.2.Extensions, Version=14.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.1.3.1\lib\net40\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Npgsql, Version=3.0.5.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.3.0.5\lib\net45\Npgsql.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI, Version=2.1.3.1, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.1.3.1\lib\net40\NPOI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.1.3.1, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.1.3.1\lib\net40\NPOI.OOXML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.1.3.1, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.1.3.1\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.1.3.1, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.1.3.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SimpleExcelExport, Version=0.0.1.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleExcelExport.0.0.1.7\lib\net35\SimpleExcelExport.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.DirectoryServices.Protocols" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AD.cs" />
+    <Compile Include="clsRepo.cs" />
+    <Compile Include="commons.cs" />
+    <Compile Include="Controles\dataGridViewFiltrado.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controles\dataGridViewFiltrado.Designer.cs">
+      <DependentUpon>dataGridViewFiltrado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\frmCustom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controles\frmCustom.Designer.cs">
+      <DependentUpon>frmCustom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\frmWaitScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controles\frmWaitScreen.Designer.cs">
+      <DependentUpon>frmWaitScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dominio\Aplicacion.cs" />
+    <Compile Include="Dominio\Entidad.cs" />
+    <Compile Include="Dominio\EntidadAplicacion.cs" />
+    <Compile Include="Excel\UsuarioExcel.cs" />
+    <Compile Include="Forms\ApUs\frmCmbAplicacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ApUs\frmCmbAplicacion.Designer.cs">
+      <DependentUpon>frmCmbAplicacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ApUs\frmUsrApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ApUs\frmUsrApp.Designer.cs">
+      <DependentUpon>frmUsrApp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Usuario\frmAddUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Usuario\frmAddUsuario.Designer.cs">
+      <DependentUpon>frmAddUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Usuario\frmUsuarios_Tabla.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Usuario\frmUsuarios_Tabla.Designer.cs">
+      <DependentUpon>frmUsuarios_Tabla.cs</DependentUpon>
+    </Compile>
+    <Compile Include="panelAplicaciones.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="panelAplicaciones.Designer.cs">
+      <DependentUpon>panelAplicaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="panelMain.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="panelMain.Designer.cs">
+      <DependentUpon>panelMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="panelUsuario.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="panelUsuario.Designer.cs">
+      <DependentUpon>panelUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pruebaAltamira.cs" />
+    <Compile Include="Reportes\clsReportes.cs" />
+    <Compile Include="Reportes\dsEntidad.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsEntidad.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Aplicacion\frmAddApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Aplicacion\frmAddApp.Designer.cs">
+      <DependentUpon>frmAddApp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Aplicacion\frmAplicaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Aplicacion\frmAplicaciones.Designer.cs">
+      <DependentUpon>frmAplicaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmIntegrador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmIntegrador.Designer.cs">
+      <DependentUpon>frmIntegrador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Usuario\frmUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Usuario\frmUsuarios.Designer.cs">
+      <DependentUpon>frmUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NHelper.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\ds_matriz_app.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ds_matriz_app.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\frmReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\frmReporte.Designer.cs">
+      <DependentUpon>frmReporte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\rpt_matriz_app.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reportes\rpt_matriz_app.Designer.cs">
+      <DependentUpon>rpt_matriz_app.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Controles\dataGridViewFiltrado.resx">
+      <DependentUpon>dataGridViewFiltrado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\frmCustom.resx">
+      <DependentUpon>frmCustom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\frmWaitScreen.resx">
+      <DependentUpon>frmWaitScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Aplicacion\frmAddApp.resx">
+      <DependentUpon>frmAddApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Aplicacion\frmAplicaciones.resx">
+      <DependentUpon>frmAplicaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ApUs\frmCmbAplicacion.resx">
+      <DependentUpon>frmCmbAplicacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ApUs\frmUsrApp.resx">
+      <DependentUpon>frmUsrApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Usuario\frmAddUsuario.resx">
+      <DependentUpon>frmAddUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Usuario\frmUsuarios_Tabla.resx">
+      <DependentUpon>frmUsuarios_Tabla.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmIntegrador.resx">
+      <DependentUpon>frmIntegrador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Usuario\frmUsuarios.resx">
+      <DependentUpon>frmUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="panelAplicaciones.resx">
+      <DependentUpon>panelAplicaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="panelMain.resx">
+      <DependentUpon>panelMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="panelUsuario.resx">
+      <DependentUpon>panelUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Reportes\frmReporte.resx">
+      <DependentUpon>frmReporte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptEntidades.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rpt_matriz_app.resx">
+      <DependentUpon>rpt_matriz_app.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Reportes\dsEntidad.xsc">
+      <DependentUpon>dsEntidad.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\dsEntidad.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsEntidad.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reportes\dsEntidad.xss">
+      <DependentUpon>dsEntidad.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Reportes\ds_matriz_app.xsc">
+      <DependentUpon>ds_matriz_app.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\ds_matriz_app.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_matriz_app.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reportes\ds_matriz_app.xss">
+      <DependentUpon>ds_matriz_app.xsd</DependentUpon>
+    </None>
+    <None Include="Resources\Eliminar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapeo\Aplicacion.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mapeo\Entidad.hbm.xml" />
+    <EmbeddedResource Include="Mapeo\EntidadAplicacion.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnDelete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnReport.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1448573814_view-refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1448603934_export_excel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1448604868_Excel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ajax-loader.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fb_loader.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\SimpleExcelImport\SimpleExcelImport\SimpleExcelImport.csproj">
+      <Project>{b64234a1-5b22-4eb1-8d0f-1edb67aa8342}</Project>
+      <Name>SimpleExcelImport</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\preferences-system-windows_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\preferences-system-windows-action_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\users_male_mixed_race_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\telefonica_logo_f.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user and apps.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\import_excel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\userconfig.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1459199811_connect_established.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
