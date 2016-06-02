@@ -52,7 +52,8 @@ namespace ADReports
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string mensaje = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

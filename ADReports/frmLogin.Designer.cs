@@ -128,7 +128,7 @@
             // btnConectar
             // 
             this.btnConectar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConectar.Image = global::ADReports.Properties.Resources._1459199811_connect_established;
+            this.btnConectar.Image = global::ADReports.Properties.Resources.connect_established;
             this.btnConectar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnConectar.Location = new System.Drawing.Point(90, 88);
             this.btnConectar.Name = "btnConectar";
