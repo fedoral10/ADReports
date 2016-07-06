@@ -24,7 +24,7 @@ namespace ADReports.Forms.Aplicacion
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             clsRepo repo = new clsRepo();
-            string query = "select a.id_aplicacion as ID_APLICACION, a.nombre as Aplicacion from aplicacion as a ";
+            string query = "select a.id_aplicacion as ID_APLICACION, a.nombre as Aplicacion, a.pais as PAIS from aplicacion as a ";
             DataTable dt = repo.Seleccionar(query);
             gridControl1.DataSource = dt;
             //dgvApps.DataSource = dt;

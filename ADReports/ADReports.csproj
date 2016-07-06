@@ -206,11 +206,23 @@
     <Compile Include="Dominio\Entidad.cs" />
     <Compile Include="Dominio\EntidadAplicacion.cs" />
     <Compile Include="Excel\UsuarioExcel.cs" />
+    <Compile Include="Forms\ApUs\frmAsignacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ApUs\frmAsignacion.Designer.cs">
+      <DependentUpon>frmAsignacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ApUs\frmCmbAplicacion.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ApUs\frmCmbAplicacion.Designer.cs">
       <DependentUpon>frmCmbAplicacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ApUs\frmLookForUsr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ApUs\frmLookForUsr.Designer.cs">
+      <DependentUpon>frmLookForUsr.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ApUs\frmUsrApp.cs">
       <SubType>Form</SubType>
@@ -320,8 +332,14 @@
     <EmbeddedResource Include="Forms\Aplicacion\frmAplicaciones.resx">
       <DependentUpon>frmAplicaciones.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ApUs\frmAsignacion.resx">
+      <DependentUpon>frmAsignacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ApUs\frmCmbAplicacion.resx">
       <DependentUpon>frmCmbAplicacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ApUs\frmLookForUsr.resx">
+      <DependentUpon>frmLookForUsr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ApUs\frmUsrApp.resx">
       <DependentUpon>frmUsrApp.cs</DependentUpon>
@@ -469,6 +487,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\1459199811_connect_established.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_as.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Log Out.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\checklist.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

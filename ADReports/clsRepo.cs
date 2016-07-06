@@ -211,7 +211,6 @@ namespace ADReports
             }
         }
 
-
         public Dominio.EntidadAplicacion getEntidadAppValue(string samaccountname, long idApp)
         {
             using (ISession session = NHelper.GetCurrentSession())
@@ -226,6 +225,7 @@ namespace ADReports
                 return entapp;   
             }
         }
+
         public IList<Dominio.EntidadAplicacion> getEntidadAppValues(string samaccountname)
         {
             using (ISession session = NHelper.GetCurrentSession())
@@ -250,6 +250,7 @@ namespace ADReports
                 return app;
             }
         }
+        
         public Dominio.Aplicacion getApplicacion(long appid)
         {
             using (ISession session = NHelper.GetCurrentSession())
@@ -260,6 +261,7 @@ namespace ADReports
                 return app;
             }
         }
+
         public Dominio.Aplicacion getApplicacion1(long appid)
         {
             using (ISession session = NHelper.GetCurrentSession())
@@ -283,6 +285,22 @@ namespace ADReports
                 }
             }
         }
+
+        public int executeNonQuery(string sql)
+        {
+            int result=0;
+            using (ISession session = NHelper.GetCurrentSession())
+            {
+                using (ITransaction trans = session.BeginTransaction())
+                {
+                    IQuery q = session.CreateSQLQuery(sql);
+                    result = q.ExecuteUpdate();
+                    trans.Commit();
+                }
+            }
+            return result;
+        }
+
         public int deleteEntidad_samaccountname(string samaccountname)
         {
             using (ISession session = NHelper.GetCurrentSession())
@@ -306,6 +324,51 @@ namespace ADReports
 
                     return i;
                 }
+            }
+        }
+        #endregion
+
+        #region APLICACION
+        public IList<Dominio.Aplicacion> getAplicacionesXPais(string pais)
+        {
+            using (ISession session = NHelper.GetCurrentSession())
+            {
+                IList<Dominio.Aplicacion> lista = session.QueryOver<Dominio.Aplicacion>()
+                    .Where(x => x.pais == pais).List<Dominio.Aplicacion>();
+                return lista;
+            }
+        }
+        public int getCountAppPais(string pais)
+        {
+            int rows = 0;
+            using (ISession session = NHelper.GetCurrentSession())
+            {
+
+                rows = session.QueryOver<Dominio.Aplicacion>()
+                       .Select(Projections.RowCount())
+                       .Where(x=> x.pais == pais)
+                       .FutureValue<int>()
+                       .Value;
+
+
+            }
+
+            return rows;
+        }
+        public IList<Dominio.Aplicacion> getAppInEntApp(string id_entidad)
+        {
+            using (ISession session = NHelper.GetCurrentSession())
+            {
+                IList<Dominio.EntidadAplicacion> lista = session.QueryOver<Dominio.EntidadAplicacion>()
+                    .Where(x => x.idEntidad.ToString() == id_entidad).List<Dominio.EntidadAplicacion>();
+
+                IList<Dominio.Aplicacion> apps = new List<Dominio.Aplicacion>();
+                foreach (Dominio.EntidadAplicacion entapp in lista)
+                {
+                    apps.Add(this.getApplicacion1(entapp.idAplicacion));
+                }
+
+                return apps;
             }
         }
         #endregion

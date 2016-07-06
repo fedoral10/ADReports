@@ -63,6 +63,16 @@ namespace ADReports.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Add {
+            get {
+                object obj = ResourceManager.GetObject("Add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap btnDelete {
             get {
                 object obj = ResourceManager.GetObject("btnDelete", resourceCulture);
@@ -86,6 +96,16 @@ namespace ADReports.Properties {
         internal static System.Drawing.Bitmap btnReport {
             get {
                 object obj = ResourceManager.GetObject("btnReport", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap checklist {
+            get {
+                object obj = ResourceManager.GetObject("checklist", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,6 +163,16 @@ namespace ADReports.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Log_Out {
+            get {
+                object obj = ResourceManager.GetObject("Log Out", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap preferences_system_windows_32 {
             get {
                 object obj = ResourceManager.GetObject("preferences_system_windows_32", resourceCulture);
@@ -156,6 +186,16 @@ namespace ADReports.Properties {
         internal static System.Drawing.Bitmap preferences_system_windows_action_32 {
             get {
                 object obj = ResourceManager.GetObject("preferences_system_windows_action_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap save_as {
+            get {
+                object obj = ResourceManager.GetObject("save_as", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

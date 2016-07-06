@@ -8,6 +8,9 @@
         <property name="nombre" type="string">
             <column name="nombre" />
         </property>
+        <property name="pais" type="string">
+            <column name="pais" />
+        </property>
         <set name="EntidadAplicaciones" inverse="true">
           <key column="id_aplicacion"/>
           <one-to-many class="EntidadAplicacion"/>

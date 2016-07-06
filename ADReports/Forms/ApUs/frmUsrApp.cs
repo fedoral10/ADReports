@@ -20,13 +20,24 @@ namespace ADReports.Forms.ApUs
     {
 
         private DataTable _dtGrid;
+        private DevExpress.XtraGrid.Views.Grid.GridView _main_view;
 
         public frmUsrApp()
         {
             InitializeComponent();
             //InicializaGrid();
+            llenar_cmb();
         }
-
+        private void llenar_cmb()
+        {
+            foreach (string p in Dominio.PAIS.paises)
+            {
+                cmbPais.Items.Add(p);
+            }
+            cmbPais.Items.Add("TODOS");
+            if (cmbPais.Items.Count > 0)
+                cmbPais.SelectedIndex = 0;
+        }
         private void InicializaGrid()
         {
             clsRepo repo = new clsRepo();
@@ -51,12 +62,12 @@ namespace ADReports.Forms.ApUs
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             clsRepo repo = new clsRepo();
-            int apps = repo.ContadorRows<Dominio.Aplicacion>();
+            int apps = cmbPais.SelectedItem.ToString() == "TODOS"? repo.ContadorRows<Dominio.Aplicacion>() : repo.getCountAppPais(cmbPais.SelectedItem.ToString());//repo.ContadorRows<Dominio.Aplicacion>();
             int usr = repo.ContadorRows<Dominio.Entidad>();
 
             if (apps == 0 || usr == 0)
             {
-                commons.showMessageBoxError(this.Text, "Verifique si hay Aplicaciones y Usuarios registrados en la aplicacion");
+                commons.showMessageBoxError(this.Text, "Verifique si hay Aplicaciones y Usuarios registrados en la aplicacion para ese pais");
                 return;
             }
 
@@ -87,10 +98,24 @@ namespace ADReports.Forms.ApUs
                     " from entidad e" +
                     " ) as x where {1}";
             string apli;
-            string a_sql = genera_columnas(out apli);
+            string a_sql = genera_columnas_x_pais(out apli);
             sql_base = string.Format(sql_base, a_sql, apli);
             this._dtGrid = repo.Seleccionar(sql_base);
             //dgvUsuarios.DataSource = this._dtGrid;
+
+            gridView1.Columns.Clear();
+            
+            gc.DataSource = null;
+            DevExpress.XtraGrid.Views.Grid.GridView view = new DevExpress.XtraGrid.Views.Grid.GridView(gc);
+
+            view.OptionsBehavior.Editable = false;
+            view.OptionsBehavior.ReadOnly = true;
+            view.OptionsSelection.MultiSelect = true;
+            view.OptionsView.ShowAutoFilterRow = true;
+            view.OptionsView.ShowGroupPanel = false;
+
+            gc.MainView = view;
+            _main_view = view;
             gc.DataSource = this._dtGrid;
 
 
@@ -116,8 +141,28 @@ namespace ADReports.Forms.ApUs
             string where_base = " x.{0} is not null ";
             foreach (Dominio.Aplicacion app in lista_apli)
             {
-                sql_fina = sql_fina + string.Format(sql_base, app.idAplicacion, "\""+app.nombre+"\"") + ",";
-                apli = apli + string.Format(where_base, "\"" + app.nombre + "\"") + " or ";
+                sql_fina = sql_fina + string.Format(sql_base, app.idAplicacion, "\""+app.nombre+"-"+app.pais+"\"") + ",";
+                apli = apli + string.Format(where_base, "\"" + app.nombre + "-" + app.pais + "\"") + " or ";
+            }
+            sql_fina = sql_fina.Substring(0, sql_fina.Length - 1) + " ";
+            apli = apli.Substring(0, apli.Length - 3);
+            return sql_fina;
+        }
+
+        private string genera_columnas_x_pais(out string apli)
+        {
+            apli = "";
+            clsRepo repo = new clsRepo();
+            IList<Dominio.Aplicacion> lista_apli = cmbPais.SelectedItem.ToString() =="TODOS" ?  repo.Seleccionar<Dominio.Aplicacion>() : repo.getAplicacionesXPais(cmbPais.SelectedItem.ToString());
+
+            //string sql_base = "(select case when id_aplicacion is null then false else true  end from entidad_aplicacion where id_aplicacion = {0} and id_entidad = e.id_entidad limit 1) as {1}";
+            string sql_base = "(select case when (select count(id_aplicacion) from entidad_aplicacion where id_aplicacion = {0} and id_entidad =e.id_entidad)> 0 then true else false end) as {1}";
+            string sql_fina = "";
+            string where_base = " x.{0} is not null ";
+            foreach (Dominio.Aplicacion app in lista_apli)
+            {
+                sql_fina = sql_fina + string.Format(sql_base, app.idAplicacion, "\"" + app.nombre + "-" + app.pais + "\"") + ",";
+                apli = apli + string.Format(where_base, "\"" + app.nombre + "-" + app.pais + "\"") + " or ";
             }
             sql_fina = sql_fina.Substring(0, sql_fina.Length - 1) + " ";
             apli = apli.Substring(0, apli.Length - 3);
@@ -199,6 +244,38 @@ namespace ADReports.Forms.ApUs
         private void btnExportar_Click(object sender, EventArgs e)
         {
             Reportes.clsReportes.call_reporte_matriz_app(_dtGrid);
+        }
+
+        private DataTable getSelectedRows()
+        {
+            DataTable dt = new DataTable();
+            int[] row_index = _main_view.GetSelectedRows();
+
+            foreach (GridColumn column in _main_view.Columns)
+            {
+                dt.Columns.Add(column.FieldName,column.ColumnType);
+            }
+
+            //rows
+            for (int r = 0; r < row_index.Length; r++)
+            {
+                object[] rows = new object[dt.Columns.Count];
+                
+                //columns
+                for (int i = 0; i < dt.Columns.Count; i++)
+                {
+                    rows[i] = this._main_view.GetRowCellValue(r, this._main_view.Columns[i].FieldName);
+                }
+                dt.Rows.Add(rows);
+            }
+            return dt;
+        }
+
+        private void btnAsignar_Click(object sender, EventArgs e)
+        {
+            frmAsignacion frm = new frmAsignacion(this.getSelectedRows());
+
+            frm.ShowDialog();
         }
 
     }

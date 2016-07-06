@@ -34,7 +34,10 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsBtnRefresh = new System.Windows.Forms.ToolStripButton();
             this.tsBtnImportar = new System.Windows.Forms.ToolStripButton();
+            this.btnAsignar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsBtnExportar = new System.Windows.Forms.ToolStripButton();
+            this.cmbPais = new System.Windows.Forms.ToolStripComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.gc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -60,6 +63,7 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsBehavior.ReadOnly = true;
+            this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
@@ -77,8 +81,11 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmbPais,
             this.tsBtnRefresh,
             this.tsBtnImportar,
+            this.btnAsignar,
+            this.toolStripSeparator1,
             this.tsBtnExportar});
             this.toolStrip1.Location = new System.Drawing.Point(3, 16);
             this.toolStrip1.Name = "toolStrip1";
@@ -106,6 +113,21 @@
             this.tsBtnImportar.Text = "Importar";
             this.tsBtnImportar.Click += new System.EventHandler(this.btnImportar_Click);
             // 
+            // btnAsignar
+            // 
+            this.btnAsignar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnAsignar.Image = global::ADReports.Properties.Resources.checklist;
+            this.btnAsignar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAsignar.Name = "btnAsignar";
+            this.btnAsignar.Size = new System.Drawing.Size(23, 22);
+            this.btnAsignar.Text = "Asignar";
+            this.btnAsignar.Click += new System.EventHandler(this.btnAsignar_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // tsBtnExportar
             // 
             this.tsBtnExportar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -115,6 +137,12 @@
             this.tsBtnExportar.Size = new System.Drawing.Size(23, 22);
             this.tsBtnExportar.Text = "Exportar";
             this.tsBtnExportar.Click += new System.EventHandler(this.btnExportar_Click);
+            // 
+            // cmbPais
+            // 
+            this.cmbPais.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPais.Name = "cmbPais";
+            this.cmbPais.Size = new System.Drawing.Size(121, 25);
             // 
             // frmUsrApp
             // 
@@ -144,5 +172,8 @@
         private System.Windows.Forms.ToolStripButton tsBtnRefresh;
         private System.Windows.Forms.ToolStripButton tsBtnImportar;
         private System.Windows.Forms.ToolStripButton tsBtnExportar;
+        private System.Windows.Forms.ToolStripButton btnAsignar;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripComboBox cmbPais;
     }
 }
