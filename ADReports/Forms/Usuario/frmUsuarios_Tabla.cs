@@ -70,7 +70,7 @@ namespace ADReports.Forms.Usuario
                         message = ex.InnerException.Message;
                     else
                         message = ex.Message;
-                    commons.showMessageBoxError(this.Text, "No se pudo eliminar el usuario de la base de datos\n" + message);
+                    commons.showMessageBoxError(this.Text, "No se pudo eliminar el usuario de la base de datos\ntiene aplicaciones asociadas\n\nRespuesta del DBMS\n" + message);
                 }
                 //actualizar_Grid();
             }

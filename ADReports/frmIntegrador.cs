@@ -81,8 +81,8 @@ namespace ADReports
 
         private void activeDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Forms.Usuario.frmUsuarios frm = new Forms.Usuario.frmUsuarios();
-            frm.ShowDialog();
+            ADSI.Forms.Usuario.frmUsuarios usr = new ADSI.Forms.Usuario.frmUsuarios();
+            usr.ShowDialog();
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)

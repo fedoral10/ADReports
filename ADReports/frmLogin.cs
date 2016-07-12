@@ -75,7 +75,10 @@ namespace ADReports
 
         private void btnAD_Click(object sender, EventArgs e)
         {
-            Forms.Usuario.frmUsuarios usr = new Forms.Usuario.frmUsuarios();
+            /*Forms.Usuario.frmUsuarios usr = new Forms.Usuario.frmUsuarios();
+            usr.ShowDialog();*/
+
+            ADSI.Forms.Usuario.frmUsuarios usr = new ADSI.Forms.Usuario.frmUsuarios();
             usr.ShowDialog();
         }
 

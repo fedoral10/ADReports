@@ -17,19 +17,22 @@ namespace ADReports.Forms.ApUs
 
         private Dictionary<string, List<Dominio.Aplicacion>> _origen;
         private Dictionary<string, List<Dominio.Aplicacion>> _destino;
+        private MapLinker<Dominio.Aplicacion> _maplink;
 
         public frmAsignacion(DataTable selected)
         {
             InitializeComponent();
             _origen = new Dictionary<string, List<Dominio.Aplicacion>>();
             _destino = new Dictionary<string, List<Dominio.Aplicacion>>();
-
-            llenar_maps();
+            _maplink = new MapLinker<Dominio.Aplicacion>(_origen, _destino);
+            
 
             this.dgvUsr.DataSource = selected;
             this._values = selected;
-            this.dgvUsr.Rows[0].Selected = true;
 
+            llenar_maps();
+            if (this.dgvUsr.Rows.Count > 0)
+                this.dgvUsr.Rows[0].Selected = true;
         }
 
         private void llenar_maps()
@@ -53,20 +56,36 @@ namespace ADReports.Forms.ApUs
                 }
                 _origen.Add(id, disponibles);
             }
-
-
+            refreshList();
         }
+        private void refreshList()
+        {
+            string id = getIDSelected();
+            var list_origen = this._maplink.getListOrigen(id);
+            var list_destino = this._maplink.getListDestino(id);
 
+            this.ListApp.Items.Clear();
+            this.ListAsignado.Items.Clear();
+
+            foreach (Dominio.Aplicacion app in list_origen)
+            {
+                ListApp.Items.Add(app);
+            }
+            foreach (Dominio.Aplicacion app in list_destino)
+            {
+                ListAsignado.Items.Add(app);
+            }
+        }
 
         private IList<Dominio.Aplicacion> llenaListAppAsignar(string samaccountname)
         { 
             clsRepo repo = new clsRepo();
             string id_ent = repo.getEntidadfromIDAD(samaccountname).idEntidad.ToString();
 
-            return getAppsOfEntidad(id_ent);
+            return getAppsOfEntidad(Convert.ToInt64(id_ent));
         }
 
-        private IList<Dominio.Aplicacion> getAppsOfEntidad(string id_entidad)
+        private IList<Dominio.Aplicacion> getAppsOfEntidad(long id_entidad)
         {
             clsRepo repo = new clsRepo();
             return repo.getAppInEntApp(id_entidad);
@@ -94,9 +113,18 @@ namespace ADReports.Forms.ApUs
 
             if (origen.SelectedItem != null)
             {
+                Dominio.Aplicacion objeto = (Dominio.Aplicacion)origen.SelectedItem;
                 destino.Items.Add(origen.SelectedItem);
                 origen.Items.Remove(origen.SelectedItem);
-                
+
+                if (origen.Equals(ListApp))
+                {
+                    this._maplink.moveToDestino(getIDSelected(), objeto);
+                }
+                else
+                {
+                    this._maplink.moveToOrigen(getIDSelected(), objeto);
+                }
             }
             if(origen.Items.Count>0)
                 origen.SelectedIndex = index;
@@ -108,15 +136,32 @@ namespace ADReports.Forms.ApUs
             for (int x = count -1; x >= 0; x--)
             {
                 object app = origen.Items[x];
-                List<Dominio.Aplicacion> lista = _destino[""]
+                Dominio.Aplicacion objeto = (Dominio.Aplicacion)app;
+                //List<Dominio.Aplicacion> lista = _destino[""]
                 destino.Items.Add(app);
                 origen.Items.Remove(app);
+
+                if (origen.Equals(ListApp))
+                {
+                    this._maplink.moveToDestino(getIDSelected(), objeto);
+                }
+                else
+                {
+                    this._maplink.moveToOrigen(getIDSelected(), objeto);
+                }
             }
         }
 
         private string getIDSelected()
         {
-            DataGridViewRow row = this.dgvUsr.Rows[this.dgvUsr.SelectedCells[0].RowIndex];
+            DataGridViewRow row=null;
+            if (this.dgvUsr.SelectedCells.Count==0)
+                row = this.dgvUsr.Rows[0];
+            else
+            {
+                row = this.dgvUsr.Rows[this.dgvUsr.SelectedCells[0].RowIndex];
+            }
+            return row.Cells["ID"].Value.ToString();
         }
 
         private void btnDerecha_Click(object sender, EventArgs e)
@@ -174,6 +219,42 @@ namespace ADReports.Forms.ApUs
             }
         }
 
+        private void asignar_linked_map()
+        {
+            List<string> usuarios = lista_usr_table();
+            if (usuarios.Count > 0)
+            {
+                clsRepo repo = new clsRepo();
+                /*Delete*/
+                string sql_delete_ent_app = "delete from entidad_aplicacion where id_entidad = (select id_entidad from entidad where samaccountname = '{x}')";
+
+                foreach (DataRow dr in this._values.Rows)
+                {
+                    string id = dr["ID"].ToString();
+                    string sql = sql_delete_ent_app.Replace("{x}", id);
+
+                    repo.executeNonQuery(sql);
+                }
+
+                /*Read list*/
+                foreach (string usuario in usuarios)
+                {
+                    List<Dominio.Aplicacion> lista_app = this._maplink.getListDestino(usuario);
+                    foreach (object o in lista_app)
+                    {
+                        Dominio.Aplicacion app = (Dominio.Aplicacion)o;
+                        Dominio.EntidadAplicacion ent = new Dominio.EntidadAplicacion();
+                        long id_entidad = repo.getIdEntidad(usuario);
+
+                        ent.idAplicacion = app.idAplicacion;
+                        ent.idEntidad = id_entidad;
+
+                        repo.Insertar<Dominio.EntidadAplicacion>(ent);
+                    }
+                }
+            }
+        }
+
         private List<string> lista_usr_table()
         {
             List<string> lista = null;
@@ -195,7 +276,8 @@ namespace ADReports.Forms.ApUs
 
             if (r == System.Windows.Forms.DialogResult.Yes)
             {
-                asignar();
+                //asignar();
+                asignar_linked_map();
             }
         }
 
@@ -208,6 +290,14 @@ namespace ADReports.Forms.ApUs
 
             frm.ShowDialog();
 
+            
+            string id = frm.row_retorno["ID"].ToString();
+
+            int validacion = (from x in this._values.AsEnumerable().Where(c=>c.Field<string>("ID") == id)
+                      select x).Count();
+
+            if (validacion > 0)
+                return;
             DataRow dr = this._values.Rows.Add();
             dr["ID"] = frm.row_retorno["ID"];
             dr["NOMBRE"] = frm.row_retorno["NOMBRE"];
@@ -219,9 +309,30 @@ namespace ADReports.Forms.ApUs
                 dr[x] = false;
             }
 
+            List<Dominio.Aplicacion> destino_actuales = getAppsOfEntidad(repo.getIdEntidad(id)).ToList<Dominio.Aplicacion>();
+            List<Dominio.Aplicacion> total_apps = repo.Seleccionar<Dominio.Aplicacion>().ToList<Dominio.Aplicacion>();
+            List<Dominio.Aplicacion> origen_disponible = new List<Dominio.Aplicacion>();
+            foreach (Dominio.Aplicacion app in total_apps)
+            {
+                if (!destino_actuales.Contains(app))
+                {
+                    origen_disponible.Add(app);
+                }
+            }
+            this._maplink.getMapDestino().Add(id, destino_actuales);
+            this._maplink.getMapOrigen().Add(id, origen_disponible);
+
             //frm.id_retorno
+        }
 
+        private void dgvUsr_SelectionChanged(object sender, EventArgs e)
+        {
+            refreshList();
+        }
 
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
     }

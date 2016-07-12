@@ -113,6 +113,9 @@
     <Reference Include="DevExpress.XtraLayout.v14.2, Version=14.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid.v14.2, Version=14.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DevExpress.XtraPrinting.v14.2, Version=14.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
       <Private>True</Private>
     </Reference>
@@ -212,6 +215,12 @@
     <Compile Include="Forms\ApUs\frmAsignacion.Designer.cs">
       <DependentUpon>frmAsignacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ApUs\frmCheks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ApUs\frmCheks.Designer.cs">
+      <DependentUpon>frmCheks.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ApUs\frmCmbAplicacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -230,6 +239,12 @@
     <Compile Include="Forms\ApUs\frmUsrApp.Designer.cs">
       <DependentUpon>frmUsrApp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ApUs\frmUsrApp2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ApUs\frmUsrApp2.Designer.cs">
+      <DependentUpon>frmUsrApp2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Usuario\frmAddUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,6 +257,7 @@
     <Compile Include="Forms\Usuario\frmUsuarios_Tabla.Designer.cs">
       <DependentUpon>frmUsuarios_Tabla.cs</DependentUpon>
     </Compile>
+    <Compile Include="MapLinker.cs" />
     <Compile Include="panelAplicaciones.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -335,6 +351,9 @@
     <EmbeddedResource Include="Forms\ApUs\frmAsignacion.resx">
       <DependentUpon>frmAsignacion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ApUs\frmCheks.resx">
+      <DependentUpon>frmCheks.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ApUs\frmCmbAplicacion.resx">
       <DependentUpon>frmCmbAplicacion.cs</DependentUpon>
     </EmbeddedResource>
@@ -343,6 +362,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ApUs\frmUsrApp.resx">
       <DependentUpon>frmUsrApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ApUs\frmUsrApp2.resx">
+      <DependentUpon>frmUsrApp2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Usuario\frmAddUsuario.resx">
       <DependentUpon>frmAddUsuario.cs</DependentUpon>
@@ -462,6 +484,10 @@
     <ProjectReference Include="..\..\..\..\..\SimpleExcelImport\SimpleExcelImport\SimpleExcelImport.csproj">
       <Project>{b64234a1-5b22-4eb1-8d0f-1edb67aa8342}</Project>
       <Name>SimpleExcelImport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ADSI\ADSI\ADSI.csproj">
+      <Project>{08172131-8b29-4fd6-85b1-f2b3ed9a0286}</Project>
+      <Name>ADSI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

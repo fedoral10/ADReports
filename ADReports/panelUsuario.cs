@@ -20,7 +20,7 @@ namespace ADReports
 
         private void btnUsuariosApp_Click(object sender, EventArgs e)
         {
-            Forms.ApUs.frmUsrApp usr = new Forms.ApUs.frmUsrApp();
+            Forms.ApUs.frmUsrApp2 usr = new Forms.ApUs.frmUsrApp2();
             usr.ShowDialog();
         }
 

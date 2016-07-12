@@ -16,6 +16,7 @@ using System.Windows.Forms;
 
 namespace ADReports.Forms.ApUs
 {
+    [Obsolete("Esta clase esta deprecated")]
     public partial class frmUsrApp : Form
     {
 
@@ -260,11 +261,11 @@ namespace ADReports.Forms.ApUs
             for (int r = 0; r < row_index.Length; r++)
             {
                 object[] rows = new object[dt.Columns.Count];
-                
+                int row = row_index[r];
                 //columns
                 for (int i = 0; i < dt.Columns.Count; i++)
                 {
-                    rows[i] = this._main_view.GetRowCellValue(r, this._main_view.Columns[i].FieldName);
+                    rows[i] = this._main_view.GetRowCellValue(row, this._main_view.Columns[i].FieldName);
                 }
                 dt.Rows.Add(rows);
             }
@@ -276,6 +277,12 @@ namespace ADReports.Forms.ApUs
             frmAsignacion frm = new frmAsignacion(this.getSelectedRows());
 
             frm.ShowDialog();
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            frmCheks frm = new frmCheks();
+            frm.Show();
         }
 
     }

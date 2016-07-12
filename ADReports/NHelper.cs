@@ -16,17 +16,15 @@ namespace ADReports
 
         public static void setConnectionString(string user, string pass, string host, string port)
         {
-            string texto = "Server={0};Port={1};database={2};user id={3};password={4}";
+            string texto = "Server={0};Port={1};database={2};user id={3};password={4};Command Timeout=0";
             connection_string = String.Format(texto, host, port, "AD", user, pass);
         }
 
         private static void ExportarEsquema(Configuration cfg)
         {
-
             var lol = new SchemaUpdate(cfg);
             lol.Execute(false, true);
             //lol.Execute(true, false);
-
         }
 
         

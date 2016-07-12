@@ -17,6 +17,27 @@ namespace ADReports.Dominio {
         {
             return this.nombre+"-"+this.pais;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            Aplicacion objAsPart = obj as Aplicacion;
+            if (objAsPart == null)
+                return false;
+            if (objAsPart.idAplicacion == this.idAplicacion)
+                return true;
+            else
+                return false;
+        }
+        public override int GetHashCode()
+        {
+            int hash = 1;
+            hash = hash + this.nombre.GetHashCode();
+            hash = hash + this.pais.GetHashCode();
+
+            return base.GetHashCode();
+        }
     }
 
     public class PAIS

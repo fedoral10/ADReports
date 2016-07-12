@@ -58,7 +58,7 @@
             this.txtID.Location = new System.Drawing.Point(103, 16);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(100, 20);
-            this.txtID.TabIndex = 1;
+            this.txtID.TabIndex = 0;
             // 
             // btnAgregar
             // 
@@ -85,7 +85,7 @@
             this.txtNombre.Location = new System.Drawing.Point(103, 42);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(280, 20);
-            this.txtNombre.TabIndex = 2;
+            this.txtNombre.TabIndex = 1;
             // 
             // label2
             // 
@@ -101,7 +101,7 @@
             this.txtPuesto.Location = new System.Drawing.Point(103, 68);
             this.txtPuesto.Name = "txtPuesto";
             this.txtPuesto.Size = new System.Drawing.Size(280, 20);
-            this.txtPuesto.TabIndex = 3;
+            this.txtPuesto.TabIndex = 2;
             // 
             // label3
             // 
@@ -117,7 +117,7 @@
             this.txtArea.Location = new System.Drawing.Point(103, 94);
             this.txtArea.Name = "txtArea";
             this.txtArea.Size = new System.Drawing.Size(280, 20);
-            this.txtArea.TabIndex = 4;
+            this.txtArea.TabIndex = 3;
             // 
             // label4
             // 
@@ -133,7 +133,7 @@
             this.txtCorreo.Location = new System.Drawing.Point(103, 120);
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(186, 20);
-            this.txtCorreo.TabIndex = 5;
+            this.txtCorreo.TabIndex = 4;
             // 
             // label5
             // 
@@ -149,7 +149,7 @@
             this.txtEmpresa.Location = new System.Drawing.Point(103, 146);
             this.txtEmpresa.Name = "txtEmpresa";
             this.txtEmpresa.Size = new System.Drawing.Size(186, 20);
-            this.txtEmpresa.TabIndex = 11;
+            this.txtEmpresa.TabIndex = 5;
             // 
             // label6
             // 

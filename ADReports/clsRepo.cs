@@ -95,6 +95,24 @@ namespace ADReports
             }
             return dt;
         }
+        public IDataAdapter SeleccionarTableAdapter(string sql)
+        {
+            IDataAdapter ta=null;
+            using (ISession session = NHelper.GetCurrentSession())
+            {
+
+                using (IDbConnection sql_con = session.Connection)
+                {
+                    
+
+                    ta = new SqlDataAdapter(sql,(SqlConnection)sql_con);
+                    //var reader = cmd.ExecuteReader();
+
+                    //dt = GetDataTableFromDataReader(reader);
+                }
+            }
+            return ta;
+        }
         public DataTable GetDataTableFromDataReader(IDataReader dataReader)
         {
             DataTable schemaTable = dataReader.GetSchemaTable();
@@ -355,12 +373,12 @@ namespace ADReports
 
             return rows;
         }
-        public IList<Dominio.Aplicacion> getAppInEntApp(string id_entidad)
+        public IList<Dominio.Aplicacion> getAppInEntApp(long id_entidad)
         {
             using (ISession session = NHelper.GetCurrentSession())
             {
                 IList<Dominio.EntidadAplicacion> lista = session.QueryOver<Dominio.EntidadAplicacion>()
-                    .Where(x => x.idEntidad.ToString() == id_entidad).List<Dominio.EntidadAplicacion>();
+                    .Where(x => x.idEntidad == id_entidad).List<Dominio.EntidadAplicacion>();
 
                 IList<Dominio.Aplicacion> apps = new List<Dominio.Aplicacion>();
                 foreach (Dominio.EntidadAplicacion entapp in lista)
